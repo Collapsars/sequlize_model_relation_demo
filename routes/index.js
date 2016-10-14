@@ -12,16 +12,16 @@ router.get('/', function(req, res, next) {
 		User.create({username:'itbilu', password:'itbilu.com'}),
 		Role.create({roleName:'管理员'})
 	]).then(function(results){
-		console.og(results[0]);
+		console.log(results[0]);
 		res.set('Content-Type', 'text/html; charset=utf-8');
 		res.end('创建成功：'+JSON.stringify({user:results[0].dataValues, role:results[1].dataValues}));
 	}).catch(next);
 });
 
-// 向 UserCheckin 插入数据 
+// 向 UserCheckin 插入数据
 router.get('/create/checkin', function(res, res, next){
 	User.create({username:'itbilu', password:'itbilu.com'}).then(function(user){
-		
+
 		var userCheckin = UserCheckin.build({loginIp:'127.0.0.1'});
 		user.setUserCheckin(userCheckin);
 
@@ -30,7 +30,7 @@ router.get('/create/checkin', function(res, res, next){
 	}).catch(next);
 });
 
-// N:M 插入数据 
+// N:M 插入数据
 router.get('/create/userRoles', function(res, res, next){
 	Promise.all([
 		User.create({username:'itbilu', password:'itbilu.com'}),
@@ -87,13 +87,13 @@ router.get('/update/userCheckin', function(res, res, next){
 router.get('/delete/user', function(res, res, next){
 	User.destroy({where:{id:2}}).then(function(result){
 		res.set('Content-Type', 'text/html; charset=utf-8');
-		res.end('删除完成');	
+		res.end('删除完成');
 	}).catch(next);
 	// 使用模型实例删除
 	// User.findOne().then(function(user){
 	// 	user.destroy();
 	// 	res.set('Content-Type', 'text/html; charset=utf-8');
-	// 	res.end('删除完成');	
+	// 	res.end('删除完成');
 	// }).catch(next);
 });
 
